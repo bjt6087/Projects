@@ -1,0 +1,89 @@
+<html>
+<style>
+	h3 {
+		display:inline;
+	}
+</style>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head><body>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.js"></script>
+	
+<div class="w3-row-padding">
+		<div class="w3-half w3-blue" align="center" style="width:10%;font-size: 11px">
+			<h4>Currency Labels:</h4>
+			<div class="w3-half w3-padding">
+				<ul class="w3-ul" style="text-align: middle">
+					<li>AUD</li>
+					<li>BGN</li>
+					<li>BRL</li>
+					<li>CAD</li>
+					<li>CHF</li>
+					<li>CNY</li>
+					<li>CZK</li>
+					<li>DKK</li>
+					<li>EUR</li>
+					<li>GBP</li>
+					<li>HKD</li>
+					<li>HRK</li>
+					<li>HUF</li>
+					<li>IDR</li>
+					<li>ILS</li>
+					<li>INR</li>
+				</ul>
+			</div>
+
+			<div class="w3-half w3-padding">
+				<ul class="w3-ul">
+					<li>JPY</li>
+					<li>KRW</li>
+					<li>MXN</li>
+					<li>MYR</li>
+					<li>NOK</li>
+					<li>NZD</li>
+					<li>PHP</li>
+					<li>PLN</li>
+					<li>RON</li>
+					<li>RUB</li>
+					<li>SEK</li>
+					<li>SGD</li>
+					<li>THB</li>
+					<li>TRY</li>
+					<li>USD</li>
+					<li>ZAR</li>
+				</ul>
+			</div>
+		</div>
+	
+	<div class="w3-half">
+		<form class="w3-form w3-blue w3-padding-large w3-center" id="frm1" style="width:50%" action="http://www.se.rit.edu/~bjt6087/form_action.asp">
+			Amount:<input class="w3-input w3-light-grey" type="text" name="amount"><br>
+			Currency Type: <input class="w3-input w3-light-grey" type="text" name="currency1"><br>
+			Desired Currency:<input class="w3-input w3-light-grey" type="text" name="currency2" <br=""><br>
+			<input style="margin: 0auto" class="w3-btn w3-round w3-pale-green" type="button" onclick="myFunction()" value="Convert">
+			<p> Amount: </p> 
+			<p id="text"></p>
+		</form>
+	</div>
+	</div>
+   
+    <script>
+        function myFunction(){
+            var form1 = document.getElementById("frm1")
+            $.get( "https://api.fixer.io/latest?base="+form1.elements[1].value, function( data ) {
+                console.log(data)
+                var form = document.getElementById("frm1")
+                var result = form.elements[0].value*data["rates"][form.elements[2].value]
+                var text= ""
+                text+=result
+                document.getElementById("text").innerHTML = text;
+            
+            });
+
+        }
+    </script>
+    
+</body></html>
